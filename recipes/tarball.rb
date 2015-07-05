@@ -69,13 +69,6 @@ link node['logstash']['install_dir'] do
   action :create
 end
 
-# environment sys config file
-template node['logstash']['sysconfig_file'] do
-  cookbook node['logstash']['cookbook']
-  source 'sysconfig.erb'
-  notifies :restart, 'service[logstash]', :delayed if node['logstash']['notify_restart']
-end
-
 # sysv init file
 template '/etc/init.d/logstash' do
   cookbook node['logstash']['cookbook']
