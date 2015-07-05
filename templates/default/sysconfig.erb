@@ -1,0 +1,39 @@
+###############################
+# Default settings for logstash
+###############################
+
+# Override Java location
+#JAVACMD=/usr/bin/java
+
+# Set a home directory
+LS_HOME=<%= node['logstash']['home_dir'] %>
+
+# Arguments to pass to logstash agent
+LS_OPTS="<%= node['logstash']['sysconfig']['LS_OPTS'] -%>"
+
+# Arguments to pass to java
+LS_HEAP_SIZE="<%= node['logstash']['sysconfig']['LS_HEAP_SIZE'] -%>"
+LS_JAVA_OPTS="<%= node['logstash']['sysconfig']['LS_JAVA_OPTS'] -%>"
+
+# pidfiles aren't used for upstart; this is for sysv users.
+LS_PIDFILE=/var/run/logstash.pid
+
+# user id to be invoked as; for upstart: edit /etc/init/logstash.conf
+LS_USER=<%= node['logstash']['user'] %>
+LS_GROUP=<%= node['logstash']['group'] %>
+
+# logstash logging
+LS_LOG_DIR=<%= node['logstash']['log_dir'] %>
+LS_LOG_FILE=${LS_LOG_DIR}/logstash.log
+LS_USE_GC_LOGGING="<%= node['logstash']['sysconfig']['LS_USE_GC_LOGGING'] -%>"
+
+# logstash configuration directory
+LS_CONF_DIR=<%= node['logstash']['conf_dir'] %>
+
+# Open file limit; cannot be overridden in upstart
+LS_OPEN_FILES=<%= node['logstash']['sysconfig']['LS_OPEN_FILES'] %>
+
+# Nice level
+LS_NICE=<%= node['logstash']['sysconfig']['LS_NICE'] %>
+
+LS_DAEMON=<%= node['logstash']['daemon'] %>
