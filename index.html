@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Chef Logstash by vkhatri</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Chef Logstash</h1>
+        <p>Chef Cookbook to Manage Elastic Logstash</p>
+
+        <p class="view"><a href="https://github.com/vkhatri/chef-logstash-ng">View the Project on GitHub <small>vkhatri/chef-logstash-ng</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/vkhatri/chef-logstash-ng/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/vkhatri/chef-logstash-ng/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/vkhatri/chef-logstash-ng">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="logstash-ng-cookbook" class="anchor" href="#logstash-ng-cookbook" aria-hidden="true"><span class="octicon octicon-link"></span></a>logstash-ng Cookbook</h1>
+
+<p><a href="https://travis-ci.org/vkhatri/chef-logstash-ng"><img src="https://travis-ci.org/vkhatri/chef-logstash-ng.svg?branch=master" alt="Build Status"></a></p>
+
+<p>This is a <a href="https://www.chef.io/">Chef</a> cookbook to manage <a href="https://www.elastic.co/products/logstash">LogStash</a> via HWRP.</p>
+
+<p>This cookbook was heavily inspired from logstash cookbook maintained by jsirex.</p>
+
+<p>More features and attributes will be added over time, <strong>feel free to contribute</strong>
+what you find missing!</p>
+
+<h2>
+<a id="repository" class="anchor" href="#repository" aria-hidden="true"><span class="octicon octicon-link"></span></a>Repository</h2>
+
+<p><a href="https://github.com/vkhatri/chef-logstash-ng">https://github.com/vkhatri/chef-logstash-ng</a></p>
+
+<h2>
+<a id="supported-os" class="anchor" href="#supported-os" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supported OS</h2>
+
+<p>This cookbook was tested on Amazon (2015-03) &amp; Ubuntu (14.04) Linux and expected to work on similar platform family OS.</p>
+
+<h2>
+<a id="supported-logstash-version" class="anchor" href="#supported-logstash-version" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supported Logstash Version</h2>
+
+<p>This cookbook was tested for Logstash v1.5.2.</p>
+
+<h2>
+<a id="supported-logstash-deployment" class="anchor" href="#supported-logstash-deployment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supported Logstash Deployment</h2>
+
+<p>This cookbook supports both Package and Tarball based installation.</p>
+
+<h2>
+<a id="recipes" class="anchor" href="#recipes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Recipes</h2>
+
+<ul>
+<li><p><code>logstash-ng::default</code> - default recipe (use it for run_list)</p></li>
+<li><p><code>logstash-ng::install</code> - install logstash via package or tarball</p></li>
+<li><p><code>logstash-ng::java</code> - install java using <code>java</code> cookbook</p></li>
+<li><p><code>logstash-ng::package</code> - install logstash using repository package</p></li>
+<li><p><code>logstash-ng::tarball</code> - install logstash using tarball</p></li>
+<li><p><code>logstash-ng::user</code> - setup user/group for logstash service</p></li>
+<li><p><code>logstash-ng::config</code> - configure logstash</p></li>
+</ul>
+
+<h2>
+<a id="cookbook-advanced-attributes" class="anchor" href="#cookbook-advanced-attributes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cookbook Advanced Attributes</h2>
+
+<ul>
+<li><p><code>default['logstash']['install_method']</code> (default: <code>package</code>): logstash install method, options: package tarball</p></li>
+<li><p><code>default['logstash']['install_java']</code> (default: <code>true</code>): whether to install java using cookbook <code>java</code></p></li>
+<li><p><code>default['logstash']['service_action']</code> (default: <code>[:enable, :start]</code>): logstash service resource action</p></li>
+<li><p><code>default['logstash']['notify_restart']</code> (default: <code>true</code>): whether to notify logstash service on any config change</p></li>
+<li><p><code>default['logstash']['setup_user']</code> (default: <code>true</code>): whether to setup logstash service user when installing via tarball</p></li>
+</ul>
+
+<h2>
+<a id="cookbook-core-attributes" class="anchor" href="#cookbook-core-attributes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cookbook Core Attributes</h2>
+
+<ul>
+<li><p><code>default['logstash']['version']</code> (default: <code>1.5.2</code>): logstash version to install</p></li>
+<li><p><code>default['logstash']['version_suffix']</code> (default: <code>calculated</code>): logstash package version suffix</p></li>
+<li><p><code>default['logstash']['user']</code> (default: <code>logstash</code>): logstash service user</p></li>
+<li><p><code>default['logstash']['group']</code> (default: <code>logstash</code>): logstash service group</p></li>
+<li><p><code>default['logstash']['conf_dir']</code> (default: <code>/etc/logstash/conf.d</code>): logstash configuration directory</p></li>
+<li><p><code>default['logstash']['log_dir']</code> (default: <code>/var/log/logstash</code>): logstash log directory</p></li>
+<li><p><code>default['logstash']['work_dir']</code> (default: <code>/tmp/logstash</code>): logstash temporary files directory</p></li>
+<li><p><code>default['logstash']['home_dir']</code> (default: <code>calcualted</code>): logstash home directory</p></li>
+<li><p><code>default['logstash']['tarball_url']</code> (default: <code>calculated</code>): logstash tarball source url</p></li>
+<li><p><code>default['logstash']['tarball_checksum']</code> (default: <code>versions</code>): logstash tarball version source sha256sum</p></li>
+<li><p><code>default['logstash']['parent_dir']</code> (default: <code>/usr/local/logstash</code>): logstash directory for tarball based installation</p></li>
+<li><p><code>default['logstash']['install_dir']</code> (default: <code>/usr/local/logstash/logstash</code>): logstash symlink to current version source directory (for tarball based installation)</p></li>
+<li><p><code>default['logstash']['source_dir']</code> (default: <code>calculated</code>): logstash current version directory (for tarball based installation)</p></li>
+<li><p><code>default['logstash']['sysconfig_file']</code> (default: <code>calculated</code>): logstash service config file location</p></li>
+<li><p><code>default['logstash']['umask']</code> (default: <code>0022</code>): file/directory umask for execute resource (for tarball based installation)</p></li>
+<li><p><code>default['logstash']['mode']</code> (default: <code>0755</code>): file/directory resource mode</p></li>
+<li><p><code>default['logstash']['daemon']</code> (default: <code>calculated</code>): logstash binary location</p></li>
+</ul>
+
+<h1>
+<a id="service-attributes" class="anchor" href="#service-attributes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Service Attributes</h1>
+
+<ul>
+<li><p><code>default['logstash']['sysconfig']['LS_HEAP_SIZE']</code> (default: <code>256m</code>): logstash heap size</p></li>
+<li><p><code>default['logstash']['sysconfig']['LS_OPTS']</code> (default: <code>nil</code>): logstash options</p></li>
+<li><p><code>default['logstash']['sysconfig']['LS_JAVA_OPTS']</code> (default: <code>-Djava.io.tmpdir=$HOME</code>): logstash service java options</p></li>
+<li><p><code>default['logstash']['sysconfig']['LS_USE_GC_LOGGING']</code> (default: <code>false</code>): logstash service parameter</p></li>
+<li><p><code>default['logstash']['sysconfig']['LS_NICE']</code> (default: <code>unlimited</code>): logstash service nice value</p></li>
+<li><p><code>default['logstash']['sysconfig']['LS_OPEN_FILES']</code> (default: <code>16_384</code>): logstash service file ulimit</p></li>
+<li><p><code>default['logstash']['sysconfig']['LS_DAEMON']</code> (default: <code>node['logstash']['daemon']</code>): logstash service binary location</p></li>
+</ul>
+
+<h1>
+<a id="logstash-yumapt-repository-attributes" class="anchor" href="#logstash-yumapt-repository-attributes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Logstash YUM/APT Repository Attributes</h1>
+
+<ul>
+<li><p><code>default['logstash']['repo_version']</code> (default: <code>calculated</code>): logstash repository version</p></li>
+<li><p><code>default['logstash']['yum']['description']</code> (default: <code>calculated</code>): logstash yum reporitory attribute</p></li>
+<li><p><code>default['logstash']['yum']['gpgcheck']</code> (default: <code>true</code>): logstash yum reporitory attribute</p></li>
+<li><p><code>default['logstash']['yum']['enabled']</code> (default: <code>true</code>): logstash yum reporitory attribute</p></li>
+<li><p><code>default['logstash']['yum']['baseurl']</code> (default: <code>calculated</code>): logstash yum reporitory attribute</p></li>
+<li><p><code>default['logstash']['yum']['gpgkey']</code> (default: <code>https://packages.elasticsearch.org/GPG-KEY-elasticsearch</code>): logstash yum reporitory attribute</p></li>
+<li><p><code>default['logstash']['yum']['mirrorlist']</code> (default: <code>nil</code>): logstash yum reporitory attribute</p></li>
+<li><p><code>default['logstash']['yum']['action']</code> (default: <code>:create</code>): logstash yum reporitory attribute</p></li>
+<li><p><code>default['logstash']['apt']['description']</code> (default: <code>calculated</code>): logstash apt reporitory attribute</p></li>
+<li><p><code>default['logstash']['apt']['components']</code> (default: <code>['stable', 'main']</code>): logstash apt reporitory attribute</p></li>
+<li><p><code>default['logstash']['apt']['uri']</code> (default: <code>calculated</code>): logstash apt reporitory attribute</p></li>
+<li><p><code>default['logstash']['apt']['key']</code> (default: <code>http://packages.elasticsearch.org/GPG-KEY-elasticsearch</code>): logstash apt reporitory attribute</p></li>
+<li><p><code>default['logstash']['apt']['action']</code> (default: <code>:add</code>): logstash apt reporitory attribute</p></li>
+</ul>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<ol>
+<li>Fork the repository on Github</li>
+<li>Create a named feature branch (like <code>add_component_x</code>)</li>
+<li>Write your change</li>
+<li>Write tests for your change (if applicable)</li>
+<li>Run the tests (<code>rake &amp; rake knife</code>), ensuring they all pass</li>
+<li>Write new resource/attribute description to <code>README.md</code>
+</li>
+<li>Write description about changes to PR</li>
+<li>Submit a Pull Request using Github</li>
+</ol>
+
+<h2>
+<a id="copyright--license" class="anchor" href="#copyright--license" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copyright &amp; License</h2>
+
+<p>Authors:: Virender Khatri and <a href="https://github.com/vkhatri/chef-logstash-ng/graphs/contributors">Contributors</a></p>
+
+<pre>
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/vkhatri">vkhatri</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
