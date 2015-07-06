@@ -42,9 +42,13 @@ default['logstash']['daemon'] = node['logstash']['install_method'] == 'tarball' 
 
 default['logstash']['packages'] = []
 
-default['logstash']['sysconfig']['LS_HEAP_SIZE'] = '500m'
 default['logstash']['sysconfig']['LS_OPTS'] = ''
 default['logstash']['sysconfig']['LS_JAVA_OPTS'] = '-Djava.io.tmpdir=$HOME'
 default['logstash']['sysconfig']['LS_USE_GC_LOGGING'] = false
 default['logstash']['sysconfig']['LS_NICE'] = 19
 default['logstash']['sysconfig']['LS_OPEN_FILES'] = 16_384
+
+default['logstash']['ssl_home'] = value_for_platform_family(
+  'debian' => '/etc/ssl/certs',
+  %w(rhel fedora) => '/etc/pki/tls/certs'
+)
