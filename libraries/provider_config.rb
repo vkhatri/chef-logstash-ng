@@ -30,11 +30,11 @@ class Chef
       def resource_file_path
         case new_resource.resource_name
         when :logstash_input
-          ::File.join(node['logstash']['conf_dir'], "10_filter_#{new_resource.name}.conf")
+          ::File.join(node['logstash']['conf_dir'], "10_input_#{new_resource.name}.conf")
         when :logstash_filter
           ::File.join(node['logstash']['conf_dir'], "20_filter_#{new_resource.name}.conf")
         when :logstash_output
-          ::File.join(node['logstash']['conf_dir'], "90_filter_#{new_resource.name}.conf")
+          ::File.join(node['logstash']['conf_dir'], "90_output_#{new_resource.name}.conf")
         else
           fail ">> unknown resource name #{new_resource.resource_name.inspect} for provider config"
         end
@@ -45,7 +45,7 @@ class Chef
         t.cookbook new_resource.cookbook
         t.source new_resource.source
         t.variables new_resource.variables
-        t.notifies :reload, 'service[logstash]', :delayed
+        t.notifies :restart, 'service[logstash]', :delayed
         t.run_action run_action
         t.updated_by_last_action?
       end
