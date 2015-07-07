@@ -11,7 +11,7 @@ class Chef
         @resource_name = :logstash_output
         @provider = Chef::Provider::LogstashConfig
         @action = :create
-        @allowed_actions = [:create, :delete]
+        @allowed_actions = [:create, :delete, :nothing]
         @name = name
       end
 
