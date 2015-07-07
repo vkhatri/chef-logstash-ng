@@ -19,7 +19,8 @@
 
 include_recipe 'logstash-ng::java'
 
-[node['logstash']['conf_dir']
+[node['logstash']['conf_dir'],
+ node['logstash']['patterns_dir']
 ].each do |dir|
   directory dir do
     mode node['logstash']['mode']

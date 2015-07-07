@@ -25,6 +25,7 @@ default['logstash']['umask']     = '0002'
 default['logstash']['mode']     = '0775'
 default['logstash']['log_dir']      = '/var/log/logstash'
 default['logstash']['conf_dir']     = '/etc/logstash/conf.d'
+default['logstash']['patterns_dir']     = '/etc/logstash/patterns'
 default['logstash']['work_dir']     = '/tmp/logstash'
 default['logstash']['home_dir']     = '/var/lib/logstash'
 
