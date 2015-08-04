@@ -39,6 +39,22 @@ class Chef
           :default => {}
         )
       end
+
+      def owner(arg = nil)
+        set_or_return(
+          :owner, arg,
+          :kind_of => String,
+          :default => 'root'
+        )
+      end
+
+      def group(arg = nil)
+        set_or_return(
+          :group, arg,
+          :kind_of => String,
+          :default => 'root'
+        )
+      end
     end
   end
 end
