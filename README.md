@@ -78,7 +78,7 @@ This cookbook supports both Package and Tarball based installation.
 
 * `default['logstash']['work_dir']` (default: `/tmp/logstash`): logstash temporary files directory
 
-* `default['logstash']['home_dir']` (default: `/var/lig/logstash`): logstash home directory
+* `default['logstash']['home_dir']` (default: `/var/lib/logstash`): logstash home directory
 
 * `default['logstash']['tarball_url']` (default: `calculated`): logstash tarball source url
 
