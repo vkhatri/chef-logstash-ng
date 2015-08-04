@@ -35,6 +35,8 @@ class Chef
           ::File.join(node['logstash']['conf_dir'], "20_filter_#{new_resource.name}.conf")
         when :logstash_output
           ::File.join(node['logstash']['conf_dir'], "90_output_#{new_resource.name}.conf")
+        when :logstash_pattern
+          ::File.join(node['logstash']['patterns_dir'], new_resource.name)
         else
           fail ">> unknown resource name #{new_resource.resource_name.inspect} for provider config"
         end
@@ -44,6 +46,8 @@ class Chef
         t = Chef::Resource::Template.new(resource_file_path, run_context)
         t.cookbook new_resource.cookbook
         t.source new_resource.source
+        t.owner new_resource.owner
+        t.group new_resource.group
         t.variables new_resource.variables
         t.notifies :restart, 'service[logstash]', :delayed
         t.run_action run_action
