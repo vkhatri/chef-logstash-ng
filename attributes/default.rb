@@ -1,4 +1,4 @@
-default['logstash']['version'] = '1.5.2'
+default['logstash']['version'] = '1.5.3'
 
 default['elasticsearch']['version_suffix'] = value_for_platform_family(
   'debian' => '',
@@ -18,6 +18,7 @@ default['logstash']['install_method'] = 'package' # options: tarball package
 default['logstash']['tarball_url'] = "https://download.elastic.co/logstash/logstash/logstash-#{node['logstash']['version']}.tar.gz"
 default['logstash']['tarball_checksum']['1.5.1'] = 'a12f91bc87f6cd8f1b481c9e9d0370a650b2c36fdc6a656785ef883cb1002894'
 default['logstash']['tarball_checksum']['1.5.2'] = '1d1805d388392a69f5049b35c176186389a7f8bf7347c4528c255edc1f9b0d6a'
+default['logstash']['tarball_checksum']['1.5.3'] = 'eb3c366074e561d777348bfe9db3d4d1cccbf2fa8e7406776f500b4ca639c4aa'
 
 default['logstash']['cookbook']     = 'logstash-ng'
 
