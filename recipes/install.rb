@@ -19,8 +19,7 @@
 
 include_recipe 'logstash-ng::java'
 
-[node['logstash']['conf_dir'],
- node['logstash']['patterns_dir']
+[node['logstash']['conf_dir']
 ].each do |dir|
   directory dir do
     mode node['logstash']['mode']
@@ -29,7 +28,8 @@ include_recipe 'logstash-ng::java'
 end
 
 [node['logstash']['log_dir'],
- node['logstash']['home_dir']
+ node['logstash']['home_dir'],
+ node['logstash']['patterns_dir']
 ].each do |dir|
   directory dir do
     owner node['logstash']['user']
