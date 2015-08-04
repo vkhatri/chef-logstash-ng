@@ -26,7 +26,6 @@ default['logstash']['umask']     = '0002'
 default['logstash']['mode']     = '0775'
 default['logstash']['log_dir']      = '/var/log/logstash'
 default['logstash']['conf_dir']     = '/etc/logstash/conf.d'
-default['logstash']['patterns_dir']     = '/etc/logstash/patterns'
 default['logstash']['work_dir']     = '/tmp/logstash'
 default['logstash']['home_dir']     = '/var/lib/logstash'
 
@@ -40,11 +39,14 @@ default['logstash']['sysconfig_file'] = value_for_platform_family(
   'debian' => '/etc/default/logstash'
 )
 
-default['logstash']['daemon'] = node['logstash']['install_method'] == 'tarball' ? ::File.join(node['logstash']['install_dir'], 'bin', 'logstash') : '/opt/logstash/bin/logstash'
+default['logstash']['base_dir'] = node['logstash']['install_method'] == 'tarball' ? node['logstash']['install_dir'] : '/opt/logstash'
+default['logstash']['patterns_dir'] = ::File.join(node['logstash']['base_dir'], 'patterns')
+
+default['logstash']['daemon'] = ::File.join(node['logstash']['base_dir'], 'bin', 'logstash')
 
 default['logstash']['packages'] = []
 
-default['logstash']['sysconfig']['LS_OPTS'] = ''
+default['logstash']['sysconfig']['LS_OPTS'] = "-w #{node['cpu']['total']}"
 default['logstash']['sysconfig']['LS_JAVA_OPTS'] = '-Djava.io.tmpdir=$HOME'
 default['logstash']['sysconfig']['LS_USE_GC_LOGGING'] = false
 default['logstash']['sysconfig']['LS_NICE'] = 19
