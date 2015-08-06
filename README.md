@@ -22,7 +22,7 @@ This cookbook was tested on Amazon (2015-03) & Ubuntu (14.04) Linux and expected
 
 ## Supported Logstash Version
 
-This cookbook was tested for Logstash v1.5.2.
+This cookbook was tested for Logstash v1.5.2+.
 
 
 ## Supported Logstash Deployment
@@ -62,7 +62,7 @@ This cookbook supports both Package and Tarball based installation.
 
 ## Cookbook Core Attributes
 
-* `default['logstash']['version']` (default: `1.5.2`): logstash version to install
+* `default['logstash']['version']` (default: `1.5.3`): logstash version to install
 
 * `default['logstash']['version_suffix']` (default: `calculated`): logstash package version suffix
 
